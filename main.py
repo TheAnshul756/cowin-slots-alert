@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 import requests
-from fake_headers import Headers
 import json
 import datetime
 app = Flask(__name__)
