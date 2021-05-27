@@ -10,7 +10,7 @@
 		<form>
 			<p> <input type="number" id="pincode" name="pincode" placeholder="pincode" required> 
 			<input type="checkbox" id="age" name="age" value="adult"> <label for="age"> 18+ Only</label></p>
-			<p> <button type="button" onclick="setPinCode()">Submit</button></p>
+			<p> <button type="button" onclick="setPinCode()">Start</button> <button type="button" onclick="stopUpdating()">Stop</button></p>
 		</form>
 	</div>
 	<div>
@@ -22,14 +22,20 @@
 		var head = ["center_id", "name", "address", "available_capacity_dose1", "available_capacity_dose2", "min_age_limit", "vaccine"];
 		var audio = new Audio('https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3');
 		var available = false;
+		var intervalId = undefined;
 		function setPinCode() {
 			pincode = document.getElementById("pincode").value;
 			// console.log(pincode);
 			checkAvailability()
-			var intervalId = window.setInterval(function(){
+			intervalId = window.setInterval(function(){
 				checkAvailability();
 				console.log("Hey ya");
 			}, 10000);
+		}
+		function stopUpdating() {
+			if(intervalId !== undefined) {
+				clearInterval(intervalId) 
+			}
 		}
 		function myFunction(obj, index, array) {
 			var checkBox = document.getElementById("age");
