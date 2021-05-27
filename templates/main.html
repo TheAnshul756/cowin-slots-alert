@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cowin in Bhilwara</title>
+	<link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='styles/main.css')}}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<form>
+			<p> <input type="number" id="pincode" name="pincode" placeholder="pincode" required> 
+			<input type="checkbox" id="age" name="age" value="adult"> <label for="age"> 18+ Only</label></p>
+			<p> <button type="button" onclick="setPinCode()">Submit</button></p>
+		</form>
+	</div>
+	<div>
+		<table id="mytable">
+		</table>
+	</div>
+	<script>
+		var pincode = undefined;
+		var head = ["center_id", "name", "address", "available_capacity_dose1", "available_capacity_dose2", "min_age_limit", "vaccine"];
+		var audio = new Audio('https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3');
+		var available = false;
+		function setPinCode() {
+			pincode = document.getElementById("pincode").value;
+			// console.log(pincode);
+			checkAvailability()
+			var intervalId = window.setInterval(function(){
+				checkAvailability();
+				console.log("Hey ya");
+			}, 10000);
+		}
+		function myFunction(obj, index, array) {
+			var checkBox = document.getElementById("age");
+			if((checkBox.checked ==  true && obj['min_age_limit'] == 18 && obj['available_capacity'] > 0) || (checkBox.checked ==  false && obj['available_capacity'] > 0)) {
+				available = true;
+				var txt = '<tr style="background-color:#00FF00">'
+				for(key in obj) {
+					if (obj.hasOwnProperty(key) && head.includes(key)) {
+						txt = txt + '<td>' + obj[key] + '</td>';
+					}
+				}
+				txt = txt + '</tr>';
+				$(mytable).append(txt);
+			} else {
+				var txt = '<tr>'
+				for(key in obj) {
+					if (obj.hasOwnProperty(key) && head.includes(key)) {
+						txt = txt + '<td>' + obj[key] + '</td>';
+					}
+				}
+				txt = txt + '</tr>';
+				$(mytable).append(txt);
+			}
+		}
+		function checkAvailability() {
+			if(pincode !== undefined) {
+				const Http = new XMLHttpRequest();
+				var date = new Date().toJSON().slice(0,10).split('-').reverse().join('-');
+				var url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?';
+				// console.log(url+'pincode='+pincode+'&date='+date)
+				Http.responseType = 'json';
+				Http.open("GET", url+'pincode='+pincode+'&date='+date);
+				Http.onload = () => {
+					out = Http.response;
+					var Table = document.getElementById("mytable");
+					Table.innerHTML = "<tr><th>Center ID</th><th>Name</th><th>Address</th><th>Dose 1</th><th>Dose 2</th><th>Age Limit</th><th>Vaccine</th></tr>";
+					available = false;
+					out['sessions'].forEach(myFunction);
+					if(available) {
+						audio.play();
+					}
+				};
+				Http.send();
+			}
+		}
+	</script>
+</body>
+</html>
