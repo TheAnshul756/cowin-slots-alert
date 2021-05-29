@@ -38,3 +38,8 @@ button:hover {
     text-align: center;
 }
 
+#viewscount {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+}

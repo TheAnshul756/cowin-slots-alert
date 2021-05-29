@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Live Slot Alert</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 	<link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/bell.jpeg')}}"/>
 	<link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='styles/main.css')}}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,6 +12,9 @@
 <body>
 	<div class="topbar">
 		Live Slot Alert
+	</div>
+	<br>
+	<div id="viewscount">
 	</div>
 	<div class="input">
 		<p> <input type="number" id="pincode" name="pincode" placeholder="pincode" required> </p>
