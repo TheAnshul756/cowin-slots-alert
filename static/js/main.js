@@ -3,18 +3,18 @@ var head = ["center_id", "name", "address", "available_capacity_dose1", "availab
 var audio = new Audio("./static/sound/alarm_r.mp3");
 var available = false;
 var intervalId = undefined;
-const Http = new XMLHttpRequest();
 
 $( document ).ready(function() {
-    Http.responseType = 'json';
+    const newHttp = new XMLHttpRequest();
+    newHttp.responseType = 'json';
     url = "https://api.countapi.xyz/hit/cowin-slots-alert/pageViews";
-    Http.open("GET", url);
-    Http.onload = () => {
-        out = Http.response;
+    newHttp.open("GET", url);
+    newHttp.onload = () => {
+        out = newHttp.response;
         countdiv = document.getElementById("viewscount");   
         countdiv.innerHTML = "Total Page Views: "+ out.value;
     };  
-    Http.send();
+    newHttp.send();
 });
 
 function setPinCode() {
@@ -63,6 +63,7 @@ function checkAvailability() {
         var date = new Date().toJSON().slice(0,10).split('-').reverse().join('-');
         var url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?';
         // console.log(url+'pincode='+pincode+'&date='+date)
+        const Http = new XMLHttpRequest();
         Http.responseType = 'json';
         Http.open("GET", url+'pincode='+pincode+'&date='+date);
         Http.onload = () => {
