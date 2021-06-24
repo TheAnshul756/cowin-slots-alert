@@ -1,6 +1,6 @@
 .topbar {
     background-color:  #ff9999;
-    max-width: 1000px;
+    width: 100%;
     margin: auto;
     text-align: center;
     font-size: 80px;
@@ -16,16 +16,16 @@ table, th, td {
     margin: auto;
 }
 
-p {
-    /* margin-left: 30%; */
-    text-align: center;
+.buttons {
+    float: left;
+    width: 50%;
+}
+
+#buttonDiv {
+    height: 30px;
 }
 
 button {
-    margin-left: 23%;
-    /* float: left; */
-    text-align: center;
-    /* border-radius: 8px; */
     width: 80px;
     height: 30px;
 }
@@ -34,12 +34,24 @@ button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#status{
-    text-align: center;
-}
 
 #viewscount {
     text-align: center;
     font-family: 'Orbitron', sans-serif;
     font-size: 20px;
+}
+
+#centralContent {
+    width: 500px;
+    margin: auto;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* #inputBox {
+    text-align: center;
+} */
+
+.space {
+    height: 10px;
 }

@@ -13,20 +13,31 @@
 	<div class="topbar">
 		Live Slot Alert
 	</div>
-	<br>
-	<div id="viewscount">
-	</div>
-	<div class="input">
-		<p> <input type="number" id="pincode" name="pincode" placeholder="pincode" required> </p>
-		<p><input type="checkbox" id="age" name="age" value="adult">
-		<label for="age"> 18+ Only</label></p>
-		<button id="startbutton" type="button" onclick="setPinCode()">Start</button> <button id="stopbutton" type="button" onclick="stopUpdating()">Stop</button>
-	</div>
-	<br>
-	<br>
-	<div>
+	<div class="space"> </div>
+	<div class="space"> </div>
+	<div id = 'centralContent'>
+		<div id="viewscount">
+		</div>
+		<div class="space"> </div>
+		<div id="inputBox"> 
+			<input type="number" id="pincode" name="pincode" placeholder="pincode"> 
+		</div>
+		<div class="space"> </div>
+		<div>
+			<input type="checkbox" id="age" name="age" value="adult">
+			<label for="age"> 18+ Only</label>
+		</div>
+		<div class="space"> </div>
+		<div id="buttonDiv">
+			<div class="buttons"> <button id="startbutton" type="button" onclick="setPinCode()">Start</button> </div>
+			<div class="buttons"> <button id="stopbutton" type="button" onclick="stopUpdating()">Stop</button> </div>
+		</div>
+		<div class="space"> </div>
 		<div id="status"></div>
-		<br>
+	</div>
+	<div class="space"> </div>
+	<div class="space"> </div>
+	<div>
 		<table id="mytable">
 		</table>
 	</div>

@@ -23,7 +23,10 @@ function setPinCode() {
     checkAvailability()
     var status = document.getElementById('status');
     status.innerHTML = "Status: &#128994; (Updating List every 10 seconds)";
-    intervalId = window.setInterval(function(){
+    if(intervalId) {
+        clearInterval(intervalId);
+    }
+    intervalId = setInterval(function(){
         checkAvailability();
     }, 10000);
 }
@@ -31,7 +34,7 @@ function stopUpdating() {
     if(intervalId !== undefined) {
         var status = document.getElementById('status');
         status.innerHTML = "Status: &#128308; (Stopped Updating)";
-        clearInterval(intervalId)
+        clearInterval(intervalId);
     }
 }
 function myFunction(obj, index, array) {
@@ -60,7 +63,7 @@ function myFunction(obj, index, array) {
 function checkAvailability() {
     if(pincode !== undefined) {
         console.log("Updating List...");
-        var date = new Date().toJSON().slice(0,10).split('-').reverse().join('-');
+        var date = new Date().toLocaleString().slice(0,10).split('-').reverse().join('-');
         var url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?';
         // console.log(url+'pincode='+pincode+'&date='+date)
         const Http = new XMLHttpRequest();
