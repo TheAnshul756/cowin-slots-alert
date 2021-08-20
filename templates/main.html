@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Live Slot Alert</title>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-	<link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/bell.jpeg')}}"/>
-	<link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='styles/main.css')}}">
+	<link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/bell.jpeg')}}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css')}}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 	<div class="topbar">
 		Live Slot Alert
 	</div>
 	<div class="space"> </div>
 	<div class="space"> </div>
-	<div id = 'centralContent'>
+	<div id='centralContent'>
 		<div id="viewscount">
 		</div>
 		<div class="space"> </div>
-		<div id="inputBox"> 
-			<input type="number" id="pincode" name="pincode" placeholder="Enter Your Pincode"> 
+		<div id="inputBox">
+			<input type="number" id="pincode" name="pincode" placeholder="Enter Your Pincode">
 		</div>
 		<div class="space"> </div>
 		<div>
 			<input type="checkbox" id="age" name="age" value="adult">
 			<label for="age"> 18+ Only</label>
+		</div>
+		<div class="space"> </div>
+		<div class="switchDiv">
+			<div class="switchDivContent"> Dose 1 </div>
+			<div class="switchDivContent">
+				<label class="switch">
+					<input type="checkbox">
+					<span class="slider round"></span>
+				</label>
+			</div>
+			<div class="switchDivContent"> Dose 2 </div>
 		</div>
 		<div class="space"> </div>
 		<div id="buttonDiv">
@@ -43,4 +56,5 @@
 	</div>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
 </body>
+
 </html>

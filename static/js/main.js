@@ -4,16 +4,16 @@ var audio = new Audio("./static/sound/alarm_r.mp3");
 var available = false;
 var intervalId = undefined;
 
-$( document ).ready(function() {
+$(document).ready(function () {
     const newHttp = new XMLHttpRequest();
     newHttp.responseType = 'json';
     url = "https://api.countapi.xyz/hit/cowin-slots-alert/pageViews";
     newHttp.open("GET", url);
     newHttp.onload = () => {
         out = newHttp.response;
-        countdiv = document.getElementById("viewscount");   
-        countdiv.innerHTML = "Total Page Views: "+ out.value;
-    };  
+        countdiv = document.getElementById("viewscount");
+        countdiv.innerHTML = "Total Page Views: " + out.value;
+    };
     newHttp.send();
 });
 
@@ -23,15 +23,15 @@ function setPinCode() {
     checkAvailability()
     var status = document.getElementById('status');
     status.innerHTML = "Status: &#128994; (Updating List every 10 seconds)";
-    if(intervalId) {
+    if (intervalId) {
         clearInterval(intervalId);
     }
-    intervalId = setInterval(function(){
+    intervalId = setInterval(function () {
         checkAvailability();
     }, 10000);
 }
 function stopUpdating() {
-    if(intervalId !== undefined) {
+    if (intervalId !== undefined) {
         var status = document.getElementById('status');
         status.innerHTML = "Status: &#128308; (Stopped Updating)";
         clearInterval(intervalId);
@@ -39,10 +39,10 @@ function stopUpdating() {
 }
 function myFunction(obj, index, array) {
     var checkBox = document.getElementById("age");
-    if((checkBox.checked ==  true && obj['min_age_limit'] == 18 && obj['available_capacity'] > 0) || (checkBox.checked ==  false && obj['available_capacity'] > 0)) {
+    if ((checkBox.checked == true && obj['min_age_limit'] == 18 && obj['available_capacity'] > 0) || (checkBox.checked == false && obj['available_capacity'] > 0)) {
         available = true;
         var txt = '<tr style="background-color:#00FF00">'
-        for(key in obj) {
+        for (key in obj) {
             if (obj.hasOwnProperty(key) && head.includes(key)) {
                 txt = txt + '<td>' + obj[key] + '</td>';
             }
@@ -51,7 +51,7 @@ function myFunction(obj, index, array) {
         $(mytable).append(txt);
     } else {
         var txt = '<tr>'
-        for(key in obj) {
+        for (key in obj) {
             if (obj.hasOwnProperty(key) && head.includes(key)) {
                 txt = txt + '<td>' + obj[key] + '</td>';
             }
@@ -61,21 +61,21 @@ function myFunction(obj, index, array) {
     }
 }
 function checkAvailability() {
-    if(pincode !== undefined) {
+    if (pincode !== undefined) {
         console.log("Updating List...");
-        var date = new Date().toLocaleString().slice(0,10).split('-').reverse().join('-');
+        var date = new Date().toLocaleString().slice(0, 10).split('-').reverse().join('-');
         var url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?';
         // console.log(url+'pincode='+pincode+'&date='+date)
         const Http = new XMLHttpRequest();
         Http.responseType = 'json';
-        Http.open("GET", url+'pincode='+pincode+'&date='+date);
+        Http.open("GET", url + 'pincode=' + pincode + '&date=' + date);
         Http.onload = () => {
             out = Http.response;
             var Table = document.getElementById("mytable");
             Table.innerHTML = "<tr><th>Center ID</th><th>Name</th><th>Address</th><th>Dose 1</th><th>Dose 2</th><th>Age Limit</th><th>Vaccine</th></tr>";
             available = false;
             out['sessions'].forEach(myFunction);
-            if(available) {
+            if (available) {
                 audio.play();
             }
         };
