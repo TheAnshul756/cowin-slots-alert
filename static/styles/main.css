@@ -138,7 +138,20 @@ button:hover {
 }
 
 .switchDivContent {
-    width: 33%;
     height: 100%;
     float: left;
+}
+
+.centerSwitch {
+  width: 20%;
+}
+
+.leftText {
+  width: 40%;
+  text-align: right;
+}
+
+.rightText {
+  width: 40%;
+  text-align: left;
 }
