@@ -39,7 +39,8 @@ function stopUpdating() {
 }
 function myFunction(obj, index, array) {
     var checkBox = document.getElementById("age");
-    if ((checkBox.checked == true && obj['min_age_limit'] == 18 && obj['available_capacity'] > 0) || (checkBox.checked == false && obj['available_capacity'] > 0)) {
+    var doseSwitch = document.getElementById("doseType");
+    if (((checkBox.checked == true && obj['min_age_limit'] == 18) || (checkBox.checked == false)) && obj['available_capacity'] > 0 && ((doseSwitch.checked == true && obj['available_capacity_dose2'] > 0) || (doseSwitch.checked == false && obj['available_capacity_dose1'] > 0))) {
         available = true;
         var txt = '<tr style="background-color:#00FF00">'
         for (key in obj) {
