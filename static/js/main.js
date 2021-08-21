@@ -17,6 +17,20 @@ $(document).ready(function () {
     newHttp.send();
 });
 
+$("#doseType").click(function() {
+    // console.log("switch Toggled");
+    var doseSwitch = document.getElementById("doseType");
+    var unselected = {"color": "black", "font-weight": "normal", "font-size": "16px"};
+    var selected = {"color": "green", "font-weight": "bold", "font-size": "18px"};
+    if(doseSwitch.checked) {
+        $("#leftText").css(unselected);
+        $("#rightText").css(selected);
+    } else {
+        $("#leftText").css(selected);
+        $("#rightText").css(unselected);
+    }
+});
+
 function setPinCode() {
     pincode = document.getElementById("pincode").value;
     // console.log("{{ url_for('static', filename='img/bell.jpeg')}}");

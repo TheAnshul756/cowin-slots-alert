@@ -146,14 +146,19 @@ button:hover {
   width: 20%;
 }
 
-.leftText {
+#leftText {
   width: 40%;
   text-align: right;
+  font-weight: bold;
+  color: green;
+  font-size: 18px;
+  transition: 0.5s;
 }
 
-.rightText {
+#rightText {
   width: 40%;
   text-align: left;
+  transition: 0.5s;
 }
 
 #attention {
