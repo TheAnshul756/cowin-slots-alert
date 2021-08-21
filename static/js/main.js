@@ -63,7 +63,9 @@ function myFunction(obj, index, array) {
 function checkAvailability() {
     if (pincode !== undefined) {
         console.log("Updating List...");
-        var date = new Date().toLocaleString().slice(0, 10).split('-').reverse().join('-');
+        var today = new Date();
+        // add one day to current date because vaccine slots are now booked for next day
+        var date = new Date(today.getTime() + (1000 * 60 * 60 * 24)).toLocaleString().slice(0, 10).split('-').reverse().join('-');
         var url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?';
         // console.log(url+'pincode='+pincode+'&date='+date)
         const Http = new XMLHttpRequest();
